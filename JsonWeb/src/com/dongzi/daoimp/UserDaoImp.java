@@ -34,4 +34,29 @@ public class UserDaoImp {
 		return b;
 	}
 
+	public int registerUsers(String username, String password) {
+
+		int row = 0;
+		GetConn getConn=new GetConn();
+		Connection conn=getConn.getConnection();
+		try {
+			/*PreparedStatement ps = conn.prepareStatement("insert into usermsg set userName=?,password=?");
+			ps.setString(1,username);
+			ps.setString(2,password);*/
+			String sql = "INSERT INTO usermsg(userName,password)values(?,?)";  
+			PreparedStatement ps = conn.prepareStatement(sql);  
+			ps.setString(1, username);  
+			ps.setString(2, password);  
+			row = ps.executeUpdate();  
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return row;
+	}
+	
+	
+
+	
+
 }

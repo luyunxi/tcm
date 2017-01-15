@@ -14,8 +14,10 @@
     <!-- add package here extends="struts-default"-->
      <package name="dongzi" extends="json-default"> <!--需要将struts-default改为json-default-->
       <!-- setting action -->
-         <action name="login" class="com.dongzi.action.loginAction" method="login">
-              <result type="json"></result>  <!--返回值类型设置为json,不设置返回页面-->        
+         <action name="login" class="com.dongzi.action.loginAction" method="login"> 
+         <result type="json"></result>  <!--返回值类型设置为json,不设置返回页面--> </action> 
+         <action name="register" class="com.dongzi.action.registerAction" method="register">
+              <result type="json"></result>      
         </action> 
      </package> 
  </struts>

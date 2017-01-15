@@ -1,6 +1,7 @@
 package com.dongzi.action;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,16 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import com.dongzi.daoimp.UserDaoImp;
 import com.opensymphony.xwork2.ActionSupport;
 
-import com.dongzi.daoimp.UserDaoImp;
+;
 
-public class loginAction extends ActionSupport implements ServletRequestAware,
-		ServletResponseAware {
+public class registerAction extends ActionSupport implements
+		ServletRequestAware, ServletResponseAware {
 	/**
 * 
 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	HttpServletRequest request;
 	HttpServletResponse response;
@@ -31,7 +33,7 @@ public class loginAction extends ActionSupport implements ServletRequestAware,
 		this.response = response;
 	}
 
-	public void login() {
+	public void register() {
 		try {
 
 			this.response.setContentType("text/html;charset=utf-8");
@@ -42,11 +44,11 @@ public class loginAction extends ActionSupport implements ServletRequestAware,
 			String username = this.request.getParameter("userName");
 			String password = this.request.getParameter("password");
 			UserDaoImp userDaoImp = new UserDaoImp();
-			boolean b = userDaoImp.login(username, password);
-			if (b) {
-				json.put("message", "µÇÂ¼³É¹¦£¡");
+			int row = userDaoImp.registerUsers(username, password);
+			if (row>0) {
+				json.put("message", "×¢²á³É¹¦£¡");
 			} else {
-				json.put("message", "µÇÂ¼Ê§°Ü£¡");
+				json.put("message", "×¢²áÊ§°Ü£¡"+row);
 			}
 
 			byte[] jsonBytes = json.toString().getBytes("utf-8");
