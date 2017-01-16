@@ -22,6 +22,9 @@ public class loginAction extends ActionSupport implements ServletRequestAware,
 
 	HttpServletRequest request;
 	HttpServletResponse response;
+	public String execute(){    
+        return SUCCESS;    
+    }
 
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
@@ -44,7 +47,7 @@ public class loginAction extends ActionSupport implements ServletRequestAware,
 			UserDaoImp userDaoImp = new UserDaoImp();
 			boolean b = userDaoImp.login(username, password);
 			if (b) {
-				json.put("message", "µÇÂ¼³É¹¦£¡");
+				json.put("message", "true");
 			} else {
 				json.put("message", "µÇÂ¼Ê§°Ü£¡");
 			}

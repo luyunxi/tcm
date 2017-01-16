@@ -24,6 +24,9 @@ public class registerAction extends ActionSupport implements
 
 	HttpServletRequest request;
 	HttpServletResponse response;
+	public String execute(){    
+        return SUCCESS;    
+    }
 
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
