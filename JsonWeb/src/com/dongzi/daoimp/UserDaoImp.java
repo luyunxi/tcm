@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import com.dongzi.db.GetConn;
 
 public class UserDaoImp {
-	public boolean login(String username,String password) 
+	public String login(String username,String password) 
 	{
-		boolean b = false;
+		String b = "";
 		GetConn getConn=new GetConn();
 		ResultSet rs = null;
 		Connection conn=getConn.getConnection();
@@ -20,13 +20,15 @@ public class UserDaoImp {
 			ps.setString(1,username);
 			ps.setString(2,password);
 			rs=ps.executeQuery();
+			
 			if (rs.next())
 			{
-				b=true;
+				int id = rs.getInt("Id");
+				b=id+"";
 			}
 			else
 			{
-				b=false;
+				b="";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

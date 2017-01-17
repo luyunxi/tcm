@@ -34,17 +34,19 @@ public class UpServer extends HttpServlet {
 			throws ServletException, IOException {
 		file=req.getParameter("file");
 		if(file!=null){
+			String Id = req.getParameter("Id");
+			String userName = req.getParameter("userName");
 			byte[] b= Base64Coder.decodeLines(file);
-			String filepath=req.getSession().getServletContext().getRealPath("/files");
-			System.out.println(filepath);
+			String filepath=req.getSession().getServletContext().getRealPath("/files"+"/"+Id);
+
 			File file=new File(filepath);
 			if(!file.exists())
 				file.mkdirs();
 			Date date = new Date();
+
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String str = sdf.format(date);
-			FileOutputStream fos=new FileOutputStream(file.getPath()+"/personname"+str+(int)(Math.random()*100)+".png");
-			System.out.println(file.getPath());
+			FileOutputStream fos=new FileOutputStream(file.getPath()+"/"+userName+str+".png");
 			fos.write(b);
 			fos.flush();
 			fos.close();

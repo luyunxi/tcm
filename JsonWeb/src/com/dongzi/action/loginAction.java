@@ -45,9 +45,10 @@ public class loginAction extends ActionSupport implements ServletRequestAware,
 			String username = this.request.getParameter("userName");
 			String password = this.request.getParameter("password");
 			UserDaoImp userDaoImp = new UserDaoImp();
-			boolean b = userDaoImp.login(username, password);
-			if (b) {
+			String b = userDaoImp.login(username, password);
+			if (b!="") {
 				json.put("message", "true");
+				json.put("Id", b);
 			} else {
 				json.put("message", "µÇÂ¼Ê§°Ü£¡");
 			}
